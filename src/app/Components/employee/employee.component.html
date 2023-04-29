@@ -1,0 +1,162 @@
+<button class="btn btn-success" (click)="Showform()">Add</button>
+<div class="row">
+    <div class="col-md-05">
+
+        <table border="3px" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <button class="btn btn-primary">Edit</button>
+                    </th>
+                    <th>
+                        <button class="btn btn-danger">Delete</button>
+
+                    </th>
+                    <th>
+                        EmpId
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Design
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of emplarr">
+                    <td><button class="btn btn-primary" (click)="GetEmployeeDetailesBYId(item.EmpId)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="DeleteEmployueData(item.EmpId)">Delete</button></td>
+                    <td>{{item.EmpId}}</td>
+                    <td>{{item.FirstName}}</td>
+                    <td>{{item.Email}}</td>
+                    <td>{{item.Designation}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-1"></div>
+    <div *ngIf="show" class="col-md-06">
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="">LastName</label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="LastName" [(ngModel)]="emplo.LastName">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="">FirstName</label>
+            </div>
+            <div class="col-md-8">
+                <input id="FirstName" class="form-control" type="text" name="FirstName" [(ngModel)]="emplo.FirstName">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="">DOB</label>
+            </div>
+            <div class="col-md-8">
+                <input required="DOB" class="form-control" type="date" name="txtdob" [(ngModel)]="emplo.DOB">
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="">Email</label>
+            </div>
+            <div class="col-md-8">
+                <input type="email" name="Email" class="form-control" [(ngModel)]="emplo.Email">
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="">Mobile</label>
+                <input type="text" pattern="\d*" name="Mobile" maxlength="10" class="form-control"
+                    [(ngModel)]="emplo.Mobile">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="">Department</label>
+                <select name="Department" id="Department" class="form-control" [(ngModel)]="emplo.Department">
+                    <option>
+                        sales
+                    </option>
+                    <option>
+                        Finance
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12">
+
+                <label for="Designation">Designation</label>
+                <select #mySelect name="Designation" (change)='onOptionsSelected(mySelect.value)' class="form-control"
+                    id="Designationid" [(ngModel)]="emplo.Designation">
+                    <option value="Manager">
+                        Manager
+                    </option>
+                    <option value="Peon">
+                        Peon
+                    </option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="Salary">Salary</label>
+                <input type="number" name="Salary" [min]="salaryRange.min" [max]="salaryRange.max" class="form-control"
+                    [(ngModel)]="emplo.Salary">
+
+                <h3>Designation</h3>
+                <h3>Peon:5000-10000</h3>
+                <h3>Manager:10000-20000</h3>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-06">
+                <button type="submit" class="btn btn-primary" *ngIf="emplo.EmpId< 1"
+                    (click)="InsertEmployeeDetiles(emplo)"> OK</button>&nbsp;
+                <button type="submit" class="btn btn-primary" *ngIf="emplo.EmpId>  0"
+                    (click)="UpdateEmployeData(emplo)"> Ok</button>
+            </div>
+            <button class="btn btn-danger" (click)="OnClose()">Cancel
+
+              
+            </button>
+        </div>
+
+
+
+
+
+
+
+
+        <!-- <button (click)="GetEmployeeDetailes()">Get</button> -->
